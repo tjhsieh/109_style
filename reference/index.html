@@ -1,0 +1,975 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>神經網路風格轉換裝飾圖樣生成</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.lp.css">
+	<link rel="stylesheet" type="text/css" href="../css/landing-page.css">
+    <link href='http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    h1 {
+        font-family: 'cwTeXFangSong';
+    }
+    .center {
+    	text-align: center;
+	}
+	.font18{
+		font-size: 18px;
+	}
+	.cd-top.cd-top--show { 
+ /* the button becomes visible */ 
+ visibility: visible;
+ opacity: 1;
+} 
+
+.cd-top.cd-top--fade-out { 
+ /* if the user keeps scrolling down, the button is out of focus and becomes less visible */ 
+ opacity: .5; 
+}
+    </style>
+</head>
+
+<body onload="start()">
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="http://www.cc.ntut.edu.tw/~tjhsieh/">國立臺北科技大學資訊工程系計算機圖學實驗室</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                      <a href="../index.html">主頁</a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/jysh1214/Neural-Style-Transfer-Decorative-Pattern-Synthesis" target="blank">系統</a>
+                    </li>
+                    <li>
+                      <a href="./index.html">參考文獻</a>
+                    </li>
+                    <li>
+                      <a href="#top">回頂端</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Header -->
+    <a name="top"></a>
+
+
+	<a  name="demo_original"></a>
+	<div class="content-section-a">
+    <p style="text-align: right">圖片來源:https://www.mathworks.com/solutions/deep-learning/convolutional-neural-network.html</p>
+        <div class="container">
+        	<h2 class="section-heading center">參考文獻</h2>
+            <hr class="section-heading-spacer">
+
+            
+            <!--
+			<div class="row">
+                <div class="col-lg-5 col-sm-6">
+					<h2 class="section-heading">Serverify</h2>
+                    <p class="font18"><a href="https://serioverify.com/" target="_blank">HTML</a></p>
+                </div>
+                <div class="col-lg-6 col-lg-offset-1 col-sm-6">
+                    <img class="img-responsive" src="../img/serioverify.png"  alt="">
+                    
+                </div>
+            </div>
+            <hr class="section-heading-spacer">
+			-->
+			
+			<style>
+				.row .single_abouts.fadeInRight{
+					text-align:right;
+				}
+				.row .single_abouts.fadeInRight img{
+					max-height:400px;
+				}
+            </style>
+            
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>《營造法式》</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">(宋) 李誡.</p>
+                            <p id="paperyear">年份:  1100</p>
+                            <p id="paperpublish"> </p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" />
+                        </div>
+                    </div> -->
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Very deep convolutional networks for large-scale
+                                image recognition.</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Karen Simonyan and Andrew Zisserman</p>
+                            <p id="paperyear">年份: 2015</p>
+                            <p id="paperpublish">發表出處: International Conference on Learning Representations</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Image style transfer using convolutional neural
+                                networks</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">L. A. Gatys, A. S. Ecker, and M. Bethge</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR),
+                                pages 2414–2423</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Image style transfer using convolutional neural
+                                networks</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">L. A. Gatys, A. S. Ecker, and M. Bethge</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR),
+                                pages 2414–2423</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Texture synthesis by non-parametric sampling</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">A. A. Efros and T. K. Leung</p>
+                            <p id="paperyear">年份: 1999</p>
+                            <p id="paperpublish">發表出處: Proceedings of the Seventh IEEE International Conference on Computer Vision, volume 2, pages
+                                1033–1038 vol.2</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\以GPGPU平行運算功能加速3D毛筆之模擬與水墨之擴散.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\GPGPU.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> A parametric texture model based on joint statistics
+                                of complex wavelet coefficients</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Javier Portilla and Eero Simoncelli</p>
+                            <p id="paperyear">年份: 2000</p>
+                            <p id="paperpublish">發表出處: International Journal of Computer Vision</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Real-time
+                                texture synthesis by patch-based sampling</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Lin Liang, Ce Liu, Ying-Qing Xu, Baining Guo, and Heung-Yeung Shum</p>
+                            <p id="paperyear">年份: 2001</p>
+                            <p id="paperpublish">發表出處: ACM Trans. Graph</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Texture optimization for
+                                example-based synthesis</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Vivek Kwatra, Irfan Essa, Aaron Bobick, and Nipun Kwatra</p>
+                            <p id="paperyear">年份: 2005</p>
+                            <p id="paperpublish">發表出處: ACM Trans. Graph</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Local derivative
+                                pattern versus local binary pattern: Face recognition with high-order local pattern descriptor</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Baochang Zhang, Yongsheng Gao, Sanqiang Zhao, and Jianzhuang Liu</p>
+                            <p id="paperyear">年份: 2010</p>
+                            <p id="paperpublish">發表出處: Image Processing, IEEE Transactions on</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Texture classification approach based on energy variation</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Shervan Fekri Ershad</p>
+                            <p id="paperyear">年份: 2012</p>
+                            <p id="paperpublish">發表出處: international journal of multimedia technology</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Binary gabor pattern: An efficient and robust descriptor for
+                                texture classification</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">L. Zhang, Z. Zhou, and H. Li</p>
+                            <p id="paperyear">年份: 2012</p>
+                            <p id="paperpublish">發表出處: 2012 19th IEEE International Conference on Image Processing,
+                                pages 81–84</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Breast cancer detection using mrf-based
+                                probable texture feature and decision-level fusion-based classification using hmm on thermography images</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Rozita Rastghalam and Hossein Pourghassem</p>
+                            <p id="paperyear">年份: 2015</p>
+                            <p id="paperpublish">發表出處: Pattern Recognition, 51</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Texture networks: Feed-forward synthesis of textures and stylized images</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Dmitry Ulyanov, Vadim Lebedev, Andrea Vedaldi, and Victor S. Lempitsky</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/1603.03417</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Texture image analysis and texture classification
+                                methods - A review</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Laleh Armi and Shervan Fekri Ershad</p>
+                            <p id="paperyear">年份: 2019</p>
+                            <p id="paperpublish">發表出處: w. CoRR, abs/1904.06554</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        	<div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Image quilting for texture synthesis and transfer</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Alexei A. Efros and William T. Freeman</p>
+                            <p id="paperyear">年份: 2001</p>
+                            <p id="paperpublish">發表出處: SIGGRAPH ’01</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Domain adaptations for computer vision applications</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Oscar Beijbom</p>
+                            <p id="paperyear">年份: 2012</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/
+                                1211.4860</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>A neural algorithm of artistic
+                                style</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge</p>
+                            <p id="paperyear">年份: 2015</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/1508.06576</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Learning transferable features with deep adaptation networks</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Mingsheng Long, Yue Cao, Jianmin Wang, and Michael Jordan</p>
+                            <p id="paperyear">年份: 2015</p>
+                            <p id="paperpublish">發表出處: Proceedings
+                                of the 32nd International Conference on Machine Learning, volume 37 of Proceedings of
+                                Machine Learning Research, pages 97–105</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2> Semantic style transfer and turning two-bit doodles into fine artworks</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Alex J. Champandard</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/1603.01768</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>  Split and match: Example-based adaptive
+                                patch sampling for unsupervised style transfer</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">O. Frigo, N. Sabater, J. Delon, and P. Hellier</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: 2016 IEEE Conference on Computer
+                                Vision and Pattern Recognition (CVPR), pages 553–561</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>  Photo-realistic single image superresolution using a generative adversarial network</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew P. Aitken, Alykhan
+                                Tejani, Johannes Totz, Zehan Wang, and Wenzhe Shi</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/1609.04802</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Combining markov random fields and convolutional neural
+                                networks for image synthesis</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Chuan Li and Michael Wand</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/1601.04589</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>Unsupervised domain adaptation
+                                with residual transfer networks</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">Mingsheng Long, Jianmin Wang, and Michael I. Jordan</p>
+                            <p id="paperyear">年份: 2016</p>
+                            <p id="paperpublish">發表出處: CoRR, abs/1602.04433</p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+            <div class="row">
+                <div class="main_abouts_content">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInLeft" data-wow-duration="1s">
+                            <h2>《營造法式彩畫研究》</h2>
+                            <div class="separetor2"></div>
+                            <p id="paperauthor">李路珂</p>
+                            <p id="paperyear">年份: 2015</p>
+                            <p id="paperpublish"></p>
+                            <!-- <a href="personal_data\陳浩勤\paper_pdf\毛筆筆鋒之模擬及其水墨書畫系統.pdf" class="btn pink-btn" target="blank">PDF</a> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single_abouts wow fadeInRight" data-wow-duration="1s">
+                            <!-- <img src="personal_data\陳浩勤\image\Chinese_painting_system.jpg" width="75%" height="75%" alt="" /> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <hr class="section-heading-spacer">
+
+
+        <!-- </div>
+    </div> -->
+    <footer>
+        <div class="container">
+            <hr class="section-heading-spacer">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright text-muted small"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type"></span><br>
+			互動式向量圖形編輯，由<a xmlns:cc="http://creativecommons.org/ns#" href="http://www.cc.ntut.edu.tw/~tjhsieh/" property="cc:attributionName" rel="cc:attributionURL">國立臺北科技大學資訊工程系計算機圖學實驗室</a>製作，
+			以<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>釋出。
+			姓名標示-非商業性-相同方式分享 CC BY-NC-SA
+			本授權條款允許使用者對本著作進行重混、調整，以及依原著作建立新著作，但僅限於非商業目的之使用。唯使用者就其新創著作，必須按照表彰
+			原作：國立臺北科技大學資訊工程系計算機圖學實驗室，並且將產出之新創著作採用相同的授權條款釋出。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="../lib/jquery-2.1.3.min.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../lib/utils.js"></script>
+  <script src="../lib/d3.js"></script>
+  <script>
+
+var W1 = 7;
+var H1 = 7;
+var D1 = 3;
+
+var K = 2;
+var F = 3;
+var S = 2; // stride
+
+var cs = 25; // cell size
+
+var X = new U.Vol(W1, H1, D1); // input volume
+for(var q=0;q<X.w.length;q++) {
+  X.w[q] = Math.floor(Math.random()*3);
+  // 0 pad with P = 1
+  for(var d=0;d<X.depth;d++) {
+    for(var x=0;x<X.sx;x++) {
+      for(var y=0;y<X.sy;y++) {
+        if(x === 0 || x === (X.sx - 1) || y === 0 || y === (X.sy - 1)) {
+          X.set(x,y,d,0);
+        }
+      }  
+    }
+  }
+}
+
+var Ws = [];
+var bs = [];
+for(var k=0;k<K;k++) {
+  var W = new U.Vol(F, F, D1);
+  for(var q=0;q<W.w.length;q++) {
+    W.w[q] = Math.floor(Math.random()*3) - 1;
+  }
+  Ws.push(W);
+  var b = new U.Vol(1,1,1);
+  b.w[0] = 1 - k;
+  bs.push(b);
+}
+
+function conv_forward(V, Ws, bs, stride) {
+  // optimized code by @mdda that achieves 2x speedup over previous version
+  var out_sy = ((V.sy-W.sy)/stride +1);
+  var out_sx = ((V.sx-W.sx)/stride +1);
+  var A = new U.Vol(out_sx |0, out_sy |0, Ws.length |0, 0.0);
+  
+  var V_sx = V.sx |0;
+  var V_sy = V.sy |0;
+  var xy_stride = stride |0;
+
+  for(var d=0;d<Ws.length;d++) {
+    var f = Ws[d];
+    var x = 0;
+    var y = 0;
+    for(var ay=0; ay<out_sy; y+=xy_stride,ay++) {  // xy_stride
+      x = 0;
+      for(var ax=0; ax<out_sx; x+=xy_stride,ax++) {  // xy_stride
+
+        // convolve centered at this particular location
+        var a = 0.0;
+        for(var fy=0;fy<f.sy;fy++) {
+          var oy = y+fy; // coordinates in the original input array coordinates
+          for(var fx=0;fx<f.sx;fx++) {
+            var ox = x+fx;
+            if(oy>=0 && oy<V_sy && ox>=0 && ox<V_sx) {
+              for(var fd=0;fd<f.depth;fd++) {
+                // avoid function call overhead (x2) for efficiency, compromise modularity :(
+                a += f.w[((f.sx * fy)+fx)*f.depth+fd] * V.w[((V_sx * oy)+ox)*V.depth+fd];
+              }
+            }
+          }
+        }
+        a += bs[d].w[0];
+        A.set(ax, ay, d, a);
+      }
+    }
+  }
+  return A;
+}
+
+function renderVol(svg, V, xoff, yoff, col, title, vid) {
+
+  var pad = 3;
+  var dpad = 20;
+
+  var gyoff = 20;
+
+  var txt = title + ' (' + V.sx + 'x' + V.sy + 'x' + V.depth + ')';
+  // 1 padding exception
+  //if(vid === 'x') { txt = title + ' (' + (V.sx-2) + 'x' + (V.sy-2) + 'x' + V.depth + ')'; }
+
+  svg.append('text')
+    .attr('x', xoff)
+    .attr('y', yoff - 5)
+    .attr('font-size', 16)
+    .attr('fill', 'black')
+    .text(txt);
+
+  for(var d = 0; d < V.depth; d++) {
+
+    svg.append('text')
+      .attr('x', xoff)
+      .attr('y', yoff + d * (V.sy * (cs + pad) + dpad) + gyoff - 5)
+      .attr('font-size', 16)
+      .attr('fill', 'black')
+      .attr('style', 'font-family: courier;')
+      .text(vid + '[:,:,'+d+']');
+
+    for(var x = 0; x < V.sx; x++) {
+      for(var y = 0; y < V.sy; y++) {
+
+        var xcoord = xoff + x * (cs + pad);
+        var ycoord = yoff + y * (cs + pad) + d * (V.sy * (cs + pad) + dpad) + gyoff;
+
+        var thecol = col;
+        if(vid === 'x' && (x === 0 || y === 0 || x === V.sx - 1 || y === V.sy - 1)) {thecol = '#DDD';}
+
+        svg.append('rect')
+          .attr('x', xcoord)
+          .attr('y', ycoord)
+          .attr('height', cs)
+          .attr('width', cs)
+          .attr('fill', thecol)
+          .attr('stroke', 'none')
+          .attr('stroke-width', '2')
+          .attr('id', vid+'_'+x+'_'+y+'_'+d)
+          .attr('class', vid);
+
+        svg.append('text')
+          .attr('x', xcoord + 5)
+          .attr('y', ycoord + 15)
+          .attr('font-size', 16)
+          .attr('fill', 'black')
+          .text(V.get(x,y,d).toFixed(0));
+      }
+    }
+  }
+}
+
+function draw() {
+  var d3elt = d3.select('#draw');
+  svg = d3elt.append('svg').attr('width', '110%').attr('height', '110%')
+        .append('g').attr('transform', '');
+
+  var yoff = 20;
+  // render input volume
+  renderVol(svg, X, 10, yoff, '#DAF7A6', 'Input Volume (+pad 1)', 'x');
+
+  for(var i=0;i<Ws.length;i++) {
+    // render weights
+    renderVol(svg, Ws[i], 270 + i*170, yoff, '#FDD', 'Filter W'+i, 'w'+i);
+    // render biases
+    renderVol(svg, bs[i], 270 + i*170, 350 + yoff, '#FDD', 'Bias b'+i, 'b'+i);
+  }
+
+  // render output
+  renderVol(svg, O, 600, yoff, '#FFC300', 'Output Volume', 'o');
+
+  // render controls
+  
+  svg.append('text')
+    .attr('x', 520)
+    .attr('y', 470)
+    .attr('font-size', 16)
+    .attr('fill', 'black')
+    .attr('class','center')
+    .text('Start / Stop');
+  svg.append('rect')
+    .attr('x', 500)
+    .attr('y', 450)
+    .attr('height', 30)
+    .attr('width', 120)
+    .attr('fill', "rgba(200, 200, 200, 0.1)")
+    .attr('stroke', 'black')
+    .attr('stroke-width', '2')
+    .attr('style', 'cursor:pointer;')
+    .on('click', function() {
+      // toggle 
+      if(iid === -1) {
+        iid = setInterval(focusCell, 1000);
+      } else {
+        clearInterval(iid);
+        iid = -1;
+      }
+    });
+}
+
+var fxg = 0;
+var fyg = 0;
+var fdg = 0;
+function focusCell() {
+  
+  // first unfocus all
+  for(var i=0;i<Ws.length;i++) {
+    d3.selectAll('.w'+i).attr('stroke', 'none');
+    d3.selectAll('.b'+i).attr('stroke', 'none');
+  }
+  d3.selectAll('.x').attr('stroke', 'none');
+  d3.selectAll('.o').attr('stroke', 'none');
+
+  var fx = fxg;
+  var fy = fyg;
+  var fd = fdg;
+
+  // highlight the output cell
+  var csel = d3.select('#o'+'_'+fx+'_'+fy+'_'+fd);
+  csel.attr('stroke', '#AA0000');
+
+  // highlight the weights
+  d3.selectAll('.w'+fd).attr('stroke', '#AA0000');
+  // highlight the bias
+  d3.selectAll('.b'+fd).attr('stroke', '#AA0000');
+
+  d3.selectAll('.ll').remove();
+
+  // highlight the input cell
+  for(var d=0;d<D1;d++) {
+    for(var x=0;x<F;x++) {
+      for(var y=0;y<F;y++) {
+        var ix = fx * S + x;
+        var iy = fy * S + y;
+        var id = d;
+        var csel = d3.select('#x'+'_'+ix+'_'+iy+'_'+id);
+        csel.attr('stroke', '#00A');
+
+        // connect with line
+        if(x === 0 && y === 0) {
+          var wsel = d3.select('#w'+fd+'_'+x+'_'+y+'_'+d);
+          svg.append('line')
+            .attr('x1', csel.attr('x'))
+            .attr('y1', csel.attr('y'))
+            .attr('x2', wsel.attr('x'))
+            .attr('y2', wsel.attr('y'))
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1')
+            .attr('class', 'll');
+        }
+        if(x === 0 && y === (F-1)) {
+          var wsel = d3.select('#w'+fd+'_'+x+'_'+y+'_'+d);
+          svg.append('line')
+            .attr('x1', csel.attr('x'))
+            .attr('y1', parseFloat(csel.attr('y')) + cs)
+            .attr('x2', wsel.attr('x'))
+            .attr('y2', parseFloat(wsel.attr('y')) + cs)
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1')
+            .attr('class', 'll');
+        }
+        if(x === (F-1) && y === 0) {
+          var wsel = d3.select('#w'+fd+'_'+x+'_'+y+'_'+d);
+          svg.append('line')
+            .attr('x1', parseFloat(csel.attr('x')) + cs)
+            .attr('y1', csel.attr('y'))
+            .attr('x2', parseFloat(wsel.attr('x')) + cs)
+            .attr('y2', wsel.attr('y'))
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1')
+            .attr('class', 'll');
+        }
+        if(x === (F-1) && y === (F-1)) {
+          var wsel = d3.select('#w'+fd+'_'+x+'_'+y+'_'+d);
+          svg.append('line')
+            .attr('x1', parseFloat(csel.attr('x')) + cs)
+            .attr('y1', parseFloat(csel.attr('y')) + cs)
+            .attr('x2', parseFloat(wsel.attr('x')) + cs)
+            .attr('y2', parseFloat(wsel.attr('y')) + cs)
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1')
+            .attr('class', 'll');
+        }
+        
+      }
+    }
+  }
+
+  // output focus cycle
+  fxg++;
+  if(fxg >= O.sx) {
+    fxg = 0;
+    fyg++;
+    if(fyg >=O.sy) {
+      fyg = 0;
+      fdg++;
+      if(fdg >= O.depth) {
+        fdg = 0;
+      }
+    }
+  }
+
+}
+
+iid = -1;
+function start() {
+  O = conv_forward(X, Ws, bs, S);
+  draw();
+  iid = setInterval(focusCell, 1000);
+}
+
+</script>
+</html>
